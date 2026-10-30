@@ -1,0 +1,38 @@
+# ─── Node / Electron ───────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── Сборка (electron-builder) ─────────────────────────────────────
+dist/
+build/
+release/
+*.blockmap
+builder-debug.yml
+builder-effective-config.yaml
+
+# ─── Python ────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.spec
+.venv/
+venv/
+env/
+
+# ─── Временные / локальные файлы ───────────────────────────────────
+preview.svg
+promt.txt
+*.log
+*.tmp
+~$*
+
+# ─── ОС и редакторы ────────────────────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# ВАЖНО: python/engine.exe НЕ игнорируется — он нужен для сборки
+# автономного дистрибутива (машины без Python).

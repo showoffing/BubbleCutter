@@ -1,0 +1,93 @@
+{
+  "common": {
+    "load_files": "📂 Load files",
+    "load_folder": "📁 Load folder",
+    "clear_points": "🗑️ Clear points",
+    "tolerance": "Tolerance",
+    "language": "Language",
+    "close_preview": "Close",
+    "none": "none"
+  },
+  "tabs": {
+    "contours": "Contours",
+    "photocraft": "PhotoCraft",
+    "diagnostics": "Diagnostics"
+  },
+  "buttons": {
+    "contours": {
+      "preview": "👁️ Preview",
+      "save": "💾 Save SVG",
+      "autodetect": "🤖 Auto-detect"
+    },
+    "photocraft": {
+      "launch": "🚀 Launch PhotoCraft",
+      "send": "📤 Send to PhotoCraft",
+      "choose_path": "📁 Set PhotoCraft path",
+      "open_folder": "📁 Open PhotoCraft folder"
+    },
+    "diagnostics": {
+      "test": "🔗 Test PhotoCraft",
+      "diagnose": "🩺 Diagnostics"
+    }
+  },
+  "settings": {
+    "behavior_after_save": "After saving",
+    "next_image": "Go to the next image",
+    "stay_on_current": "Stay on the current image"
+  },
+  "placeholder": {
+    "empty": "Load a manga page to begin",
+    "file_list": "No files"
+  },
+  "modal": {
+    "title": "Mask result (Ctrl+Wheel — zoom, middle button — pan)"
+  },
+  "busy": {
+    "processing": "⏳...",
+    "analyzing": "⏳ Analyzing...",
+    "launching": "⏳ Launching...",
+    "sending": "⏳ Sending...",
+    "diagnosing": "⏳ Diagnosing..."
+  },
+  "alerts": {
+    "no_image": "Load an image first!",
+    "no_points": "Place points on a bubble!",
+    "nothing_to_save": "Run 'Preview' first!",
+    "load_error": "Failed to load image:\n{path}",
+    "load_folder_error": "Folder load error: {error}",
+    "folder_no_images": "No images found in the folder (png, jpg, webp, svg).",
+    "preview_error": "Preview error: {error}",
+    "autodetect_error": "Auto-detect error: {error}",
+    "autodetect_no_bubbles": "Auto-detect found no suitable bubbles.",
+    "error_save": "Save error: {error}",
+    "saved": "Saved:\n{path}",
+    "send_after_save": "Send contours to PhotoCraft?",
+    "send_success": "Shape sent to PhotoCraft!",
+    "send_error": "Send error: {error}",
+    "send_no_contours": "Run preview first — contours come from it.",
+    "test_success": "Connection OK!\n{data}",
+    "test_error": "Error: {error}",
+    "launch_error": "Launch error: {error}",
+    "path_chosen": "PhotoCraft path saved:\n{path}",
+    "diagnose_error": "Diagnostics error: {error}",
+    "diagnose_missing_cmd": "Command select.convertToShape not found in the list. Details in console (F12).",
+    "diagnose_status": "select.convertToShape status:\nEnabled: {enabled}\nDisabledReason: {reason}",
+    "open_folder_error": "Failed to open folder: {error}"
+  },
+  "menu": {
+    "file": "File",
+    "edit": "Edit",
+    "view": "View",
+    "help": "Help",
+    "exit": "Exit",
+    "undo": "Undo",
+    "redo": "Redo",
+    "cut": "Cut",
+    "copy": "Copy",
+    "paste": "Paste",
+    "toggle_language": "Toggle Language",
+    "about": "About",
+    "about_message": "Bubble Cutter Pro",
+    "about_version": "Version {version}"
+  }
+}

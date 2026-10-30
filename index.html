@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Bubble Cutter Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="language-switcher">
+            <span id="lang-title">Язык</span>
+            <button id="lang-ru" class="lang-btn active">Русский</button>
+            <button id="lang-en" class="lang-btn">English</button>
+        </div>
+
+        <button id="btn-load" class="primary">📂 Загрузить файлы</button>
+        <button id="btn-folder-load" class="info">📁 Загрузить папку</button>
+        <button id="btn-clear" class="danger">🗑️ Очистить точки</button>
+
+        <div class="controls">
+            <label><span id="tol-label">Tolerance</span>: <span id="tol-val">20</span></label>
+            <input type="range" id="tolerance" min="5" max="100" value="20">
+        </div>
+
+        <div class="save-mode-group">
+            <div class="save-mode-title" id="save-mode-title">Режим после сохранения</div>
+            <label><input type="radio" name="save-mode" value="next" checked> <span id="save-next-label">Перейти к следующему изображению</span></label>
+            <label><input type="radio" name="save-mode" value="current"> <span id="save-current-label">Остаться на текущем изображении</span></label>
+        </div>
+
+        <ul id="file-list"></ul>
+    </div>
+
+    <div class="main-area">
+        <div class="tab-bar" id="tab-bar">
+            <button class="tab-item active" data-tab="contours">Контуры</button>
+            <button class="tab-item" data-tab="photocraft">PhotoCraft</button>
+            <button class="tab-item" data-tab="diagnostics">Диагностика</button>
+        </div>
+
+        <div class="toolbar" id="toolbar"></div>
+
+        <div class="canvas-container">
+            <div id="placeholder" class="placeholder">
+                <div class="placeholder-icon">🖼️</div>
+                <div class="placeholder-text" id="placeholder-text">Загрузите страницу манги, чтобы начать</div>
+            </div>
+            <img id="main-image" alt="Манга" style="display: none;">
+            <canvas id="overlay"></canvas>
+        </div>
+    </div>
+
+    <div id="preview-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">Результат маски (Ctrl+Колесо - Зум, Средняя кнопка - Перетаскивание)</h2>
+            <div class="preview-container">
+                <img id="preview-img" alt="Mask">
+            </div>
+            <button id="btn-close-preview">Закрыть</button>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

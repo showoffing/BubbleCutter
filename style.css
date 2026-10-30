@@ -1,0 +1,516 @@
+/* ────────────────────────────────────────────────────────────────
+   1️⃣ Общие переменные и базовые стили
+   ──────────────────────────────────────────────────────────────── */
+:root {
+    --bg-main:      #1e1e1e;
+    --bg-side:      #252526;
+    --bg-toolbar:   #2c2c2c;
+    --bg-canvas:    #2d2d2d;
+    --bg-modal:     #252526;
+    --bg-placeholder:#2d2d2d;
+
+    --text-primary: #d4d4d4;
+    --text-muted:   #a0a0a0;
+    --text-inverse: #ffffff;
+
+    --c-primary:    #0e639c;
+    --c-danger:     #c0392b;
+    --c-info:       #2a7a8a;
+    --c-success:    #2d7a3e;
+    --c-purple:     #8a2be2;
+    --c-dark:       #555555;
+    --c-green:      #2d7a3e;
+    --c-warning:    #ff9800;
+
+    --shadow-sm:    0 2px 4px rgba(0,0,0,.3);
+    --shadow-md:    0 4px 8px rgba(0,0,0,.4);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   2️⃣ Сайдбар
+   ──────────────────────────────────────────────────────────────── */
+.sidebar {
+    width: 300px;
+    background-color: var(--bg-side);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #333;
+    overflow: hidden;
+}
+
+.sidebar::-webkit-scrollbar,
+#file-list::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.sidebar::-webkit-scrollbar-track,
+#file-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb,
+#file-list::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,.15);
+    border-radius: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb:hover,
+#file-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255,255,255,.25);
+}
+
+.sidebar,
+#file-list {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.15) transparent;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   3️⃣ Переключатель языка
+   ──────────────────────────────────────────────────────────────── */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.language-switcher > span {
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    margin-right: 2px;
+}
+
+.lang-btn {
+    margin-bottom: 0;
+    padding: 5px 12px;
+    font-size: 0.84rem;
+    background: #3a3a3a;
+    color: var(--text-primary);
+    box-shadow: none;
+}
+
+.lang-btn.active {
+    background: var(--c-primary);
+    color: var(--text-inverse);
+}
+
+/* ────────────────────────────────────────────────────────────────
+   4️⃣ Кнопки (общий стиль + варианты)
+   ──────────────────────────────────────────────────────────────── */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--c-primary);
+    color: var(--text-inverse);
+    font-weight: 600;
+    font-size: 0.94rem;
+    cursor: pointer;
+    transition: background-color .18s ease, transform .08s ease, box-shadow .18s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+button.primary   { background: var(--c-primary); }
+button.danger    { background: var(--c-danger); }
+button.info      { background: var(--c-info); }
+button.success   { background: var(--c-success); }
+.btn-purple      { background: var(--c-purple); }
+.btn-green       { background: var(--c-green); }
+.btn-dark        { background: var(--c-dark); }
+.btn-warning     { background: var(--c-warning); }
+
+button:hover,
+button:focus {
+    filter: brightness(1.18);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: var(--shadow-sm);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--c-primary);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   5️⃣ Ползунок (input[type=range])
+   ──────────────────────────────────────────────────────────────── */
+.controls input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    margin: 8px 0;
+    background: transparent;
+}
+
+.controls input[type=range]::-webkit-slider-runnable-track {
+    height: 6px;
+    background: rgba(255,255,255,.12);
+    border-radius: 3px;
+}
+.controls input[type=range]::-moz-range-track {
+    height: 6px;
+    background: rgba(255,255,255,.12);
+    border-radius: 3px;
+}
+
+.controls input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--c-primary);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    transition: background .2s, transform .1s;
+    margin-top: -6px;
+}
+.controls input[type=range]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--c-primary);
+    border: none;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    transition: background .2s, transform .1s;
+}
+
+.controls input[type=range]::-webkit-slider-thumb:hover {
+    background: #1b9bf0;
+}
+.controls input[type=range]::-moz-range-thumb:hover {
+    background: #1b9bf0;
+}
+.controls input[type=range]::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+}
+.controls input[type=range]::-moz-range-thumb:active {
+    transform: scale(1.2);
+}
+
+/* ────────────────────────────────────────────────────────────────
+   6️⃣ Режим после сохранения
+   ──────────────────────────────────────────────────────────────── */
+.save-mode-group {
+    margin: 8px 0 12px;
+    padding: 10px 12px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: rgba(0,0,0,.15);
+}
+
+.save-mode-title {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.save-mode-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.save-mode-group input[type=radio] {
+    accent-color: var(--c-primary);
+    margin: 0;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   7️⃣ Список файлов
+   ──────────────────────────────────────────────────────────────── */
+#file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+    font-size: 0.94rem;
+}
+
+#file-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: background-color .15s ease;
+}
+#file-list li:hover {
+    background-color: rgba(255,255,255,.05);
+}
+#file-list li.active {
+    background-color: var(--c-primary);
+    color: var(--text-inverse);
+}
+#file-list li.empty {
+    color: var(--text-muted);
+    cursor: default;
+    pointer-events: none;
+}
+
+#file-list li .thumb {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#file-list li .thumb img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    display: block;
+}
+
+#file-list li .thumb.svg-box {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    background: #2a2a2a;
+}
+
+#file-list li .name {
+    flex: 1;
+    min-width: 0;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   8️⃣ Основная область: вкладки + toolbar + canvas
+   ──────────────────────────────────────────────────────────────── */
+.main-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.tab-bar {
+    display: flex;
+    gap: 2px;
+    background-color: var(--bg-toolbar);
+    padding: 8px 10px 0;
+    border-bottom: 1px solid #333;
+}
+
+.tab-item {
+    margin-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    background: #3a3a3a;
+    color: var(--text-muted);
+    padding: 9px 18px;
+    box-shadow: none;
+}
+
+.tab-item.active {
+    background: var(--c-primary);
+    color: var(--text-inverse);
+}
+
+.toolbar {
+    background-color: var(--bg-toolbar);
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid #333;
+    min-height: 52px;
+}
+
+.toolbar button {
+    margin-bottom: 0;
+}
+
+.canvas-container {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-canvas);
+}
+
+#main-image,
+#overlay,
+#preview-img {
+    max-width: none;
+    max-height: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+    user-select: none;
+}
+
+#main-image {
+    display: none;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   9️⃣ Модальное окно предпросмотра
+   ──────────────────────────────────────────────────────────────── */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal.hidden { display: none; }
+
+.modal-content {
+    background: var(--bg-modal);
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 92vw;
+    max-height: 92vh;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.modal-content h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.preview-container {
+    width: 100%;
+    max-width: 860px;
+    height: 70vh;
+    background: var(--bg-canvas);
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.preview-container::-webkit-scrollbar {
+    width: 8px;
+}
+.preview-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,.15);
+    border-radius: 4px;
+}
+.preview-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255,255,255,.25);
+}
+
+.modal-content button {
+    background: var(--c-primary);
+    color: var(--text-inverse);
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+    margin-bottom: 0;
+}
+.modal-content button:hover {
+    background: #1177bb;
+    transform: translateY(-1px);
+}
+.modal-content button:active {
+    transform: translateY(1px);
+}
+
+/* ────────────────────────────────────────────────────────────────
+   10️⃣ Заглушка пустого холста
+   ──────────────────────────────────────────────────────────────── */
+.placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    background: var(--bg-placeholder);
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.placeholder-icon {
+    font-size: 80px;
+    margin-bottom: 12px;
+    opacity: 0.4;
+}
+
+.placeholder-text {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   11️⃣ Анимация появления
+   ──────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to   { opacity: 1; transform: scale(1); }
+}
+.modal,
+.canvas-container,
+.placeholder {
+    animation: fadeIn .18s ease-out;
+}

@@ -1,0 +1,93 @@
+{
+  "common": {
+    "load_files": "📂 Загрузить файлы",
+    "load_folder": "📁 Загрузить папку",
+    "clear_points": "🗑️ Очистить точки",
+    "tolerance": "Tolerance",
+    "language": "Язык",
+    "close_preview": "Закрыть",
+    "none": "нет"
+  },
+  "tabs": {
+    "contours": "Контуры",
+    "photocraft": "PhotoCraft",
+    "diagnostics": "Диагностика"
+  },
+  "buttons": {
+    "contours": {
+      "preview": "👁️ Предпросмотр",
+      "save": "💾 Сохранить SVG",
+      "autodetect": "🤖 Автопоиск"
+    },
+    "photocraft": {
+      "launch": "🚀 Запустить PhotoCraft",
+      "send": "📤 В PhotoCraft",
+      "choose_path": "📁 Указать путь к PhotoCraft",
+      "open_folder": "📁 Открыть папку PhotoCraft"
+    },
+    "diagnostics": {
+      "test": "🔗 Тест PhotoCraft",
+      "diagnose": "🩺 Диагностика"
+    }
+  },
+  "settings": {
+    "behavior_after_save": "Режим после сохранения",
+    "next_image": "Перейти к следующему изображению",
+    "stay_on_current": "Остаться на текущем изображении"
+  },
+  "placeholder": {
+    "empty": "Загрузите страницу манги, чтобы начать",
+    "file_list": "Нет файлов"
+  },
+  "modal": {
+    "title": "Результат маски (Ctrl+Колесо — зум, средняя кнопка — перетаскивание)"
+  },
+  "busy": {
+    "processing": "⏳...",
+    "analyzing": "⏳ Анализ...",
+    "launching": "⏳ Запуск...",
+    "sending": "⏳ Отправка...",
+    "diagnosing": "⏳ Диагностика..."
+  },
+  "alerts": {
+    "no_image": "Сначала загрузите изображение!",
+    "no_points": "Поставьте точки на пузырь!",
+    "nothing_to_save": "Сначала выполните 'Предпросмотр'!",
+    "load_error": "Не удалось загрузить изображение:\n{path}",
+    "load_folder_error": "Ошибка загрузки папки: {error}",
+    "folder_no_images": "В папке не найдено изображений (png, jpg, webp, svg).",
+    "preview_error": "Ошибка предпросмотра: {error}",
+    "autodetect_error": "Ошибка автопоиска: {error}",
+    "autodetect_no_bubbles": "Автопоиск не нашёл подходящих пузырей.",
+    "error_save": "Ошибка сохранения: {error}",
+    "saved": "Сохранено:\n{path}",
+    "send_after_save": "Отправить контуры в PhotoCraft?",
+    "send_success": "Фигура отправлена в PhotoCraft!",
+    "send_error": "Ошибка отправки: {error}",
+    "send_no_contours": "Сначала сделайте предпросмотр — контуры берутся из него.",
+    "test_success": "Связь есть!\n{data}",
+    "test_error": "Ошибка: {error}",
+    "launch_error": "Ошибка запуска: {error}",
+    "path_chosen": "Путь к PhotoCraft сохранён:\n{path}",
+    "diagnose_error": "Ошибка диагностики: {error}",
+    "diagnose_missing_cmd": "Команда select.convertToShape не найдена в списке. Подробности в консоли (F12).",
+    "diagnose_status": "Статус select.convertToShape:\nEnabled: {enabled}\nDisabledReason: {reason}",
+    "open_folder_error": "Не удалось открыть папку: {error}"
+  },
+  "menu": {
+    "file": "Файл",
+    "edit": "Правка",
+    "view": "Вид",
+    "help": "Справка",
+    "exit": "Выход",
+    "undo": "Отменить",
+    "redo": "Повторить",
+    "cut": "Вырезать",
+    "copy": "Копировать",
+    "paste": "Вставить",
+    "toggle_language": "Переключить язык",
+    "about": "О программе",
+    "about_message": "Bubble Cutter Pro",
+    "about_version": "Версия {version}"
+  }
+}
