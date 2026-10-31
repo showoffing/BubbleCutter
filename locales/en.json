@@ -35,6 +35,11 @@
     "next_image": "Go to the next image",
     "stay_on_current": "Stay on the current image"
   },
+  "filelist": {
+    "close": "Close file",
+    "clear_list": "Clear list",
+    "close_others": "Close all except current"
+  },
   "placeholder": {
     "empty": "Load a manga page to begin",
     "file_list": "No files"

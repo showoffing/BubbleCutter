@@ -161,6 +161,7 @@ function applyLanguage() {
 
     Array.from(tabBar.children).forEach((b) => { b.textContent = t('tabs.' + b.dataset.tab); });
 
+    updateContextMenuLabels();
     renderToolbar();
     updateFileList();
 }
@@ -247,10 +248,134 @@ function updateFileList() {
         name.textContent = fileBaseName(f);
         li.appendChild(name);
 
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'file-close';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.title = t('filelist.close');
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            removeFile(i);
+        });
+        li.appendChild(closeBtn);
+
         li.onclick = () => loadFile(i);
         if (i === state.currentFileIdx) li.classList.add('active');
         fileList.appendChild(li);
     });
+}
+
+// Сброс холста и изображения, когда список файлов пуст
+function resetCanvasToPlaceholder() {
+    state.points = [];
+    state.zoom = 1.0;
+    state.panX = 0;
+    state.panY = 0;
+    state.centered = false;
+    invalidatePreview();
+    imgElement.style.display = 'none';
+    imgElement.removeAttribute('src');
+    canvasEl.width = 0;
+    canvasEl.height = 0;
+    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+    if (placeholder) placeholder.classList.remove('hidden');
+    if (!previewModal.classList.contains('hidden')) closePreview();
+}
+
+// Удаление одного файла; корректно правит currentFileIdx
+function removeFile(idx) {
+    if (idx < 0 || idx >= state.files.length) return;
+    const wasActive = idx === state.currentFileIdx;
+    state.files.splice(idx, 1);
+
+    if (state.files.length === 0) {
+        state.currentFileIdx = -1;
+        resetCanvasToPlaceholder();
+        updateFileList();
+        return;
+    }
+
+    if (wasActive) {
+        // следующий файл теперь на том же индексе; если удалили последний — берём предыдущий
+        let nextIdx = idx;
+        if (nextIdx >= state.files.length) nextIdx = state.files.length - 1;
+        loadFile(nextIdx);
+    } else {
+        // удалили элемент раньше текущего — сдвигаем индекс
+        if (idx < state.currentFileIdx) state.currentFileIdx -= 1;
+        updateFileList();
+    }
+}
+
+function clearFileList() {
+    state.files = [];
+    state.currentFileIdx = -1;
+    resetCanvasToPlaceholder();
+    updateFileList();
+}
+
+function closeAllExceptCurrent() {
+    const active = state.currentFileIdx;
+    if (active === -1 || state.files.length === 0) return;
+    const keep = state.files[active];
+    state.files = [keep];
+    state.currentFileIdx = 0;
+    updateFileList();
+}
+
+// ---------------------------  КОНТЕКСТНОЕ МЕНЮ  ------------------------
+let ctxMenu = null;
+let ctxMenuClearItem = null;
+let ctxMenuCloseOthersItem = null;
+
+function buildContextMenu() {
+    ctxMenu = document.createElement('div');
+    ctxMenu.id = 'file-context-menu';
+    ctxMenu.className = 'context-menu hidden';
+    document.body.appendChild(ctxMenu);
+
+    ctxMenuClearItem = document.createElement('button');
+    ctxMenuClearItem.className = 'context-menu-item';
+    ctxMenuClearItem.addEventListener('click', () => { hideContextMenu(); clearFileList(); });
+    ctxMenu.appendChild(ctxMenuClearItem);
+
+    ctxMenuCloseOthersItem = document.createElement('button');
+    ctxMenuCloseOthersItem.className = 'context-menu-item';
+    ctxMenuCloseOthersItem.addEventListener('click', () => { hideContextMenu(); closeAllExceptCurrent(); });
+    ctxMenu.appendChild(ctxMenuCloseOthersItem);
+
+    updateContextMenuLabels();
+}
+
+function updateContextMenuLabels() {
+    if (!ctxMenu) return;
+    ctxMenuClearItem.textContent = t('filelist.clear_list');
+    ctxMenuCloseOthersItem.textContent = t('filelist.close_others');
+}
+
+function showContextMenu(x, y) {
+    if (!ctxMenu) return;
+    ctxMenu.classList.remove('hidden');
+    const mw = ctxMenu.offsetWidth || 200;
+    const mh = ctxMenu.offsetHeight || 100;
+    const maxX = window.innerWidth - mw - 4;
+    const maxY = window.innerHeight - mh - 4;
+    ctxMenu.style.left = Math.max(4, Math.min(x, maxX)) + 'px';
+    ctxMenu.style.top = Math.max(4, Math.min(y, maxY)) + 'px';
+}
+
+function hideContextMenu() {
+    if (ctxMenu) ctxMenu.classList.add('hidden');
+}
+
+function wireContextMenu() {
+    fileList.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        showContextMenu(e.clientX, e.clientY);
+    });
+    document.addEventListener('contextmenu', () => hideContextMenu());
+    document.addEventListener('click', () => hideContextMenu());
+    window.addEventListener('blur', () => hideContextMenu());
 }
 
 function loadFile(idx) {
@@ -719,6 +844,9 @@ async function init() {
 
     wireCanvasInteractions();
     wirePreviewInteractions();
+
+    buildContextMenu();
+    wireContextMenu();
 
     setLanguage(lang);
 }

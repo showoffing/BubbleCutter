@@ -1,6 +1,6 @@
 {
   "name": "bubble-cutter-electron",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Bubble Cutter Pro",
   "author": "BubbleCutter",
   "main": "main.js",

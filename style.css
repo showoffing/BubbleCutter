@@ -327,6 +327,77 @@ button:disabled {
     text-overflow: ellipsis;
 }
 
+#file-list li .file-close {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    opacity: 0.6;
+    transition: background-color .15s ease, color .15s ease, opacity .15s ease;
+}
+#file-list li .file-close:hover {
+    background: var(--c-danger);
+    color: var(--text-inverse);
+    opacity: 1;
+    filter: none;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   7b️⃣ Контекстное меню списка файлов
+   ──────────────────────────────────────────────────────────────── */
+.context-menu {
+    position: fixed;
+    z-index: 2000;
+    min-width: 210px;
+    background: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+}
+.context-menu.hidden { display: none; }
+
+.context-menu-item {
+    width: 100%;
+    margin: 0;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-align: left;
+    justify-content: flex-start;
+    box-shadow: none;
+}
+.context-menu-item:hover {
+    background: var(--c-primary);
+    color: var(--text-inverse);
+    filter: none;
+    transform: none;
+    box-shadow: none;
+}
+.context-menu-item + .context-menu-item {
+    margin-top: 2px;
+}
+
 /* ────────────────────────────────────────────────────────────────
    8️⃣ Основная область: вкладки + toolbar + canvas
    ──────────────────────────────────────────────────────────────── */
